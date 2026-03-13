@@ -9,7 +9,7 @@ from typing import List, Optional
 # ==========================================
 
 # ALTERE A SENHA DO SEU POSTGRES DE sua_senha PARA A SENHA QUE VOCÊ CONFIGUROU NO SEU POSTGRESQL LOCAL
-DATABASE_URI = 'postgresql://postgres:weber150@localhost:5432/postgres?client_encoding=utf8'
+DATABASE_URI = 'postgresql://postgres:sua_senha@localhost:5432/postgres?client_encoding=utf8'
 
 engine = create_engine(DATABASE_URI, echo=False)
 SessionLocal = sessionmaker(bind=engine)
