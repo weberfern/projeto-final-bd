@@ -102,7 +102,8 @@ def executar_crud():
     print("\n--- Executando operações CRUD ---")
 
     # 1. CREATE
-    print("\nCREATE: Inserindo 3 novos animais...")
+    print(("\n----------CREATE----------"))
+    print("\nInserindo 3 novos animais...")
     novo_animal1 = Animal(nome="Bolinha", especie="Cachorro", raca="Poodle", genero="Fêmea", idade_meses=2, porte="P", temperamento="Dócil", status="DISPONIVEL")
     novo_animal2 = Animal(nome="Garfield", especie="Gato", raca="Persa", genero="Macho", idade_meses=36, porte="M", temperamento="Preguiçoso", status="DISPONIVEL")
     novo_animal3 = Animal(nome="Snoopy", especie="Cachorro", raca="Beagle", genero="Macho", idade_meses=12, porte="M", temperamento="Agitado", status="QUARENTENA")
@@ -112,13 +113,15 @@ def executar_crud():
     print("Animais inseridos com sucesso!")
 
     # 2. READ
-    print("\nREAD: Listando todos os animais ordenados por nome...")
+    print(("\n----------READ----------"))
+    print("\nListando todos os animais ordenados por nome...")
     animais_ordenados = session.query(Animal).order_by(Animal.nome).all()
     for a in animais_ordenados:
         print(f"ID: {a.id} | Nome: {a.nome} | Espécie: {a.especie} | Raça: {a.raca} | Status: {a.status}")
 
     # 3. UPDATE
-    print("\nUPDATE: Atualizando o status do animal 'Snoopy' para 'DISPONIVEL'...")
+    print(("\n----------UPDATE----------"))
+    print("\nAtualizando o status do animal 'Snoopy' para 'DISPONIVEL'...")
     snoopy = session.query(Animal).filter_by(nome="Snoopy").first()
     if snoopy:
         snoopy.status = "DISPONIVEL"
@@ -128,7 +131,8 @@ def executar_crud():
         print(f"Animal {snoopy.nome} não encontrado.")
 
     # 4. DELETE
-    print("\nDELETE: Criando um adotante temporário e deletando logo em seguida...")
+    print(("\n----------DELETE----------"))
+    print("\nCriando um adotante temporário e deletando logo em seguida...")
     adotante_temp = Adotante(nome="João Deletado", cpf="00000000000", endereco="Rua Fim", idade=20, tipo_moradia="CASA", area_util_m2=50)
     session.add(adotante_temp)
     session.commit()
@@ -146,21 +150,24 @@ def executar_consultas_relacionamento():
     print("\n--- INICIANDO CONSULTAS COM RELACIONAMENTO ---")
 
     # Consulta 1: Relacionamento equivalente a JOIN (Listar Adotantes e seus Telefones)
-    print("\nConsulta 1 (JOIN 1-N): Adotantes e seus respectivos números de telefone")
+    print(("\n----------CONSULTA 1----------"))
+    print("\nJOIN 1-N: Adotantes e seus respectivos números de telefone")
     adotantes_com_telefone = session.query(Adotante).join(Telefone).all()
     for adotante in adotantes_com_telefone:
         telefones_str = ", ".join([t.numero for t in adotante.telefones])
         print(f"Adotante: {adotante.nome} | Telefones: {telefones_str}")
 
     # Consulta 2: Relacionamento equivalente a JOIN (Listar Adoções detalhadas)
-    print("\nConsulta 2 (JOIN Múltiplo): Detalhes das Adoções realizadas")
+    print(("\n----------CONSULTA 2----------"))
+    print("\nJOIN Múltiplo: Detalhes das Adoções realizadas")
     adocoes = session.query(Adocao).join(Adotante).join(Animal).all()
     for adocao in adocoes:
         print(f"Data: {adocao.data_adocao} | Dono: {adocao.adotante.nome} | Pet: {adocao.animal.nome} ({adocao.animal.raca}) | Taxa: R${adocao.valor_taxa}")
 
     # Consulta 3: Filtro + Ordenação (Animais DISPONIVEIS ordenados por idade)
     # Aqui o animal Snoopy no inicio estava como QUARENTENA, mas foi atualizado para DISPONIVEL, então ele deve aparecer na lista ordenada.
-    print("\nConsulta 3 (Filtro + Ordenação): Animais DISPONIVEIS ordenados do mais novo ao mais velho")
+    print(("\n----------CONSULTA 3----------"))
+    print("\nFiltro + Ordenação: Animais DISPONIVEIS ordenados do mais novo ao mais velho")
     animais_filtrados = session.query(Animal)\
         .filter(Animal.status == 'DISPONIVEL')\
         .order_by(Animal.idade_meses)\
