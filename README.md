@@ -21,20 +21,24 @@ Este projeto demonstra a integração de um banco de dados relacional PostgreSQL
 Projeto Final - Etapa 7/
 ├── main.py
 ├── README.md
-├── Dbeaver/
+├── db/
 │   └── SistemaDeAdocaoDeAnimais.sql
 └── images/
+    ├── crud.jpg
+    ├── querys.jpg
     └── terminal.jpg
 ```
 
 ### Descrição rápida dos arquivos
 - `main.py`: código principal da aplicação em Python com integração ORM.
-- `Dbeaver/SistemaDeAdocaoDeAnimais.sql`: script SQL para criação e carga inicial do banco.
-- `images/terminal.jpg`: imagem de demonstração da execução do projeto.
+- `db/SistemaDeAdocaoDeAnimais.sql`: script SQL para criação e carga inicial do banco.
+- `images/crud.jpg`: imagem com demonstração das operações CRUD.
+- `images/querys.jpg`: imagem com demonstração das consultas (queries).
+- `images/terminal.jpg`: imagem da execução geral do projeto no terminal.
 
 ## 📌 Pré-requisitos e Configuração do Banco
 1. O PostgreSQL deve estar em execução localmente na porta `5432`.
-2. Execute o script SQL (`Dbeaver/SistemaDeAdocaoDeAnimais.sql`) no DBeaver para criar o schema `exemplo` e popular as tabelas.
+2. Execute o script SQL (`db/SistemaDeAdocaoDeAnimais.sql`) no DBeaver para criar o schema `exemplo` e popular as tabelas.
 3. No arquivo `main.py`, altere a variável `DATABASE_URI`, substituindo `sua_senha` pela senha real do usuário `postgres`.
 
 ## 🚀 Como Executar o Projeto
@@ -51,8 +55,19 @@ pip install sqlalchemy psycopg2-binary
 python main.py
 ```
 
-## 🖼️ Demonstração
+## 🖼️ Demonstrações por Tipo
 
-Imagem de demonstração da execução no terminal:
+### 1. Função CRUD
+Esta imagem apresenta as operações de cadastro, leitura, atualização e remoção.
 
-![Demonstração no terminal](images/terminal.jpg)
+![Demonstração da função CRUD](images/crud.jpg)
+
+### 2. Função de Consultas
+Esta imagem apresenta a execução das consultas (queries) do sistema.
+
+![Demonstração da função de consultas](images/querys.jpg)
+
+### 3. Execução Geral no Terminal
+Esta imagem mostra a execução geral do projeto no terminal, para validação final.
+
+![Demonstração geral da execução no terminal](images/terminal.jpg)
